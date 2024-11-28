@@ -413,7 +413,6 @@ class MmuServer:
                 )
                 for gate, spool_id in gate_ids
             }
-            gate_dict = {k: {kk: vv.lstrip('#') if kk == 'color' else vv for kk, vv in v.items()} for k, v in gate_dict.items()}
             try:
                 await self.klippy_apis.run_gcode(f"MMU_GATE_MAP MAP=\"{gate_dict}\" {'REPLACE=1' if replace else ''} QUIET=1")
             except Exception as e:
